@@ -2,7 +2,7 @@
   xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
 
-  <groupId>Almost3D</groupId>
+  <groupId>Almost3d</groupId>
   <artifactId>Almost3d</artifactId>
   <version>1.0-SNAPSHOT</version>
   <packaging>jar</packaging>
@@ -43,6 +43,11 @@
             <artifactId>pitest-maven</artifactId>
             <version>1.1.4</version>
         </plugin>
+        <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-javadoc-plugin</artifactId>
+            <version>2.9.1</version>
+        </plugin> 
     </plugins>
 </build>
 </project>
