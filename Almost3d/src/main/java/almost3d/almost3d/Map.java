@@ -5,18 +5,18 @@
  */
 
 package almost3d.almost3d;
-
+import static java.lang.Math.*;
 /**
  *
  * @author santeriraisanen
  */
-public class map {
+public class Map {
 
     private boolean[][] map;
     private int dim_y;
     private int dim_x;
     
-    public map() {
+    public Map() {
         
     }
     
@@ -29,6 +29,15 @@ public class map {
             return false;
         }
         return this.map[X][Y];
+    }
+    
+    public boolean checkCollisions(double x, double y, double radius) {
+        for(Direction d:Direction.values()) {
+            if (checkWall((int) floor(d.getX()*radius+x),(int) floor(d.getY()*radius+x))) {
+                return true;
+            }
+        }
+        return false;
     }
 
     public int getDimX() {
