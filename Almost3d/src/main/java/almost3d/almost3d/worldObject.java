@@ -6,12 +6,31 @@
 
 package almost3d.almost3d;
 
+import java.awt.image.BufferedImage;
+
 /**
  *
  * @author santeriraisanen
  */
 public abstract class worldObject {
-    private double xLoc;
-    private double yLoc;
+
+    BufferedImage texture;
+    boolean permeable;
+    boolean physical;
+    boolean visible;
     
+    public boolean isPermeable() {
+        return this.permeable;
+    }
+    
+    public boolean isPhysical() {
+        return this.physical;
+    }
+    
+    public boolean isVisible() {
+        return this.visible;
+    }
+    
+    
+    public abstract int checkCollision(double X, double Y);
 }

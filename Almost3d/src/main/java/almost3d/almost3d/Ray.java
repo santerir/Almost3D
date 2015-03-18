@@ -24,6 +24,12 @@ public class Ray {
                 
     }
     
+    public void addHit(worldObject obj, double dits, int hitLoc) {
+        this.objects.add(obj);
+        this.distance.add(dits);
+        this.hitLoc.add(hitLoc);
+    }
+    
     public int numberOfHits() {
         return(this.objects.size());
     }

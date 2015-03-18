@@ -6,34 +6,53 @@
 
 package almost3d.almost3d;
 import static java.lang.Math.*;
+import java.util.ArrayList;
 /**
  *
  * @author santeriraisanen
  */
 public class Map {
 
-    private boolean[][] map;
+    private int[][] map;
     private int dim_y;
     private int dim_x;
+    private ArrayList<worldObject> objects;
+    private SkyBox SkyBox;
     
     public Map() {
+        this.objects = new ArrayList<>();
+    }
+    
+    public boolean load(String a) {
+        return false;
+    }
+    
+    public boolean load() {
+        this.SkyBox = new SkyBox();
+        this.dim_x=5;
+        this.dim_y=5;
+        this.map = new int[][]{{0,0,1,1,1},{0,0,0,0,0},{1,0,0,0,0},{1,0,0,0,0},{1,0,0,0,0}};
+        System.out.println(this.map.toString());
         
+        this.objects.add(new NullObj());
+        this.objects.add(new Wall());
+        
+        
+        return true;
+               
     }
     
-    public int load(String a) {
-        return 0;
-    }
-    
-    public boolean checkWall(int X, int Y) {
-        if(X<0 && X>this.dim_x) {
-            return false;
+    public worldObject checkObject(int X, int Y) {
+        if(X < 0 || X>=this.dim_x || Y < 0 || Y>=this.dim_y) {
+            return this.SkyBox;
         }
-        return this.map[X][Y];
+        return this.objects.get(this.map[X][Y]);
+        
     }
     
     public boolean checkCollisions(double x, double y, double radius) {
         for(Direction d:Direction.values()) {
-            if (checkWall((int) floor(d.getX()*radius+x),(int) floor(d.getY()*radius+x))) {
+            if (checkObject((int) ceil(d.getX()*radius+x),(int) ceil(d.getY()*radius+x)).checkCollision(x, y)!=-1) {
                 return true;
             }
         }

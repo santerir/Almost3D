@@ -15,7 +15,6 @@ public class Player {
     private double xLoc;
     private double yLoc;
     private double theta;
-    private double fov;
 
     public Player() {
     }
