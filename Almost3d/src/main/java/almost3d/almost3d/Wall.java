@@ -12,7 +12,7 @@ import java.awt.image.BufferedImage;
  *
  * @author santeriraisanen
  */
-public class Wall extends worldObject {
+public class Wall extends WorldObject {
     
     public Wall() {
         this.texture = new BufferedImage(100,500,6);

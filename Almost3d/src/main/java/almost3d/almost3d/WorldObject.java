@@ -12,7 +12,7 @@ import java.awt.image.BufferedImage;
  *
  * @author santeriraisanen
  */
-public abstract class worldObject {
+public abstract class WorldObject {
 
     BufferedImage texture;
     boolean permeable;

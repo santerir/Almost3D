@@ -16,33 +16,40 @@ public class Map {
     private int[][] map;
     private int dim_y;
     private int dim_x;
-    private ArrayList<worldObject> objects;
+    private ArrayList<WorldObject> objects;
     private SkyBox SkyBox;
     
     public Map() {
         this.objects = new ArrayList<>();
     }
     
-    public boolean load(String a) {
-        return false;
+    public void load(String a) {
+       
     }
     
-    public boolean load() {
+    public void load(int[][] map) {
+        this.SkyBox = new SkyBox();
+        this.dim_x=map.length;
+        this.dim_y=map[0].length;
+        this.map = map;
+        this.objects.add(new NullObj());
+        this.objects.add(new Wall());
+    }
+    
+    public void load() {
         this.SkyBox = new SkyBox();
         this.dim_x=5;
         this.dim_y=5;
         this.map = new int[][]{{0,0,1,1,1},{0,0,0,0,0},{1,0,0,0,0},{1,0,0,0,0},{1,0,0,0,0}};
-        System.out.println(this.map.toString());
-        
         this.objects.add(new NullObj());
         this.objects.add(new Wall());
         
         
-        return true;
+    
                
     }
     
-    public worldObject checkObject(int X, int Y) {
+    public WorldObject checkObject(int X, int Y) {
         if(X < 0 || X>=this.dim_x || Y < 0 || Y>=this.dim_y) {
             return this.SkyBox;
         }

@@ -13,7 +13,7 @@ import java.util.ArrayList;
  * @author santeriraisanen
  */
 public class Ray {
-    private ArrayList<worldObject> objects;
+    private ArrayList<WorldObject> objects;
     private ArrayList<Double> distance;
     private ArrayList<Integer> hitLoc;
     
@@ -24,7 +24,7 @@ public class Ray {
                 
     }
     
-    public void addHit(worldObject obj, double dits, int hitLoc) {
+    public void addHit(WorldObject obj, double dits, int hitLoc) {
         this.objects.add(obj);
         this.distance.add(dits);
         this.hitLoc.add(hitLoc);
@@ -42,7 +42,7 @@ public class Ray {
         return(this.hitLoc.get(n).intValue());
     }
      
-    public worldObject objectHit(int n) {
+    public WorldObject objectHit(int n) {
         return(this.objects.get(n));
     }
     

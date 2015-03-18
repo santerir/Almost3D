@@ -10,7 +10,7 @@ package almost3d.almost3d;
  *
  * @author santeriraisanen
  */
-public class SkyBox extends worldObject{
+public class SkyBox extends WorldObject{
     
     public SkyBox() {
         this.permeable = false;

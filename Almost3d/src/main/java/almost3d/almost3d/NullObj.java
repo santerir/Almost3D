@@ -10,7 +10,7 @@ package almost3d.almost3d;
  *
  * @author santeriraisanen
  */
-public class NullObj extends worldObject{
+public class NullObj extends WorldObject{
     
     public NullObj() {
         this.permeable=true;

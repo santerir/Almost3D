@@ -30,13 +30,9 @@ public class Raycaster {
             step = nextStep(step,x_comp,y_comp);
             int coord_x = (int) floor(step[0]+x_comp*0.00001);
             int coord_y = (int) floor(step[1]+y_comp*0.00001);
-            
-            System.out.println(coord_x);
-            System.out.println(coord_y);
-            
-            
-            worldObject hit = this.map.checkObject(coord_x, coord_y);
-            System.out.println(hit.toString());
+                        
+            WorldObject hit = this.map.checkObject(coord_x, coord_y);
+
             if(!hit.isPhysical()) {
                 continue;
             }
