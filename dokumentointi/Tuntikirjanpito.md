@@ -11,9 +11,10 @@
 
 ##Keskiviikko 18 maaliskuuta 2015
 ###klo 14:00-20:00
-	Raycaster luokka toimii nyt kuten pitääkin
-
-
-##Keskiviikko 18 maaliskuuta 2015
+	Raycaster luokka toimii nyt kuten pitää.
 ###klo 22-24:00
 	jUnit testejä luotu
+
+##Perjantai 20 maaliskuuta 2015
+###klo 16:00-23:50
+	Renderöinti laitettu kuntoon, lisää jUnit testejä, keylistener aloitettu
