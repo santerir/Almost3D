@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 
-package almost3d.almost3d;
+package almost3d.world;
 import static java.lang.Math.*;
 import java.util.ArrayList;
 /**
@@ -27,7 +27,7 @@ public class Map {
        
     }
     
-    public void load(int[][] map) {
+    public void load(int[][] map) {             // this is just for debugging purposes
         this.SkyBox = new SkyBox();
         this.dim_x=map.length;
         this.dim_y=map[0].length;
@@ -36,11 +36,11 @@ public class Map {
         this.objects.add(new Wall());
     }
     
-    public void load() {
+    public void load() {                        // as is this
         this.SkyBox = new SkyBox();
         this.dim_x=5;
         this.dim_y=5;
-        this.map = new int[][]{{0,0,1,1,1},{0,0,0,0,0},{1,0,0,0,0},{1,0,0,0,0},{1,0,0,0,0}};
+        this.map = new int[][]{{1,1,1,1,1},{1,0,0,0,1},{1,0,0,0,1},{1,0,0,0,1},{1,1,1,1,1}};
         this.objects.add(new NullObj());
         this.objects.add(new Wall());
         

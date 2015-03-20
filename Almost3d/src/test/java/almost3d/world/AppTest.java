@@ -1,4 +1,4 @@
-package almost3d.almost3d;
+package almost3d.world;
 
 import junit.framework.Test;
 import junit.framework.TestCase;

@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 
-package almost3d.almost3d;
+package almost3d.world;
 
 import java.awt.image.BufferedImage;
 

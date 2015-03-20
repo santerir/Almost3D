@@ -4,7 +4,9 @@
  * and open the template in the editor.
  */
 
-package almost3d.almost3d;
+package almost3d.graphics;
+import almost3d.world.Map;
+import almost3d.world.WorldObject;
 import static java.lang.Math.*;
 /**
  *

@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 
-package almost3d.almost3d;
+package almost3d.world;
 
 import java.awt.image.BufferedImage;
 
@@ -12,26 +12,28 @@ import java.awt.image.BufferedImage;
  *
  * @author santeriraisanen
  */
-public class NullObj extends WorldObject{
+public class SkyBox extends WorldObject{
     
-    public NullObj() {
-        this.permeable=true;
-        this.physical=false;
-        this.visible=false;
+    public SkyBox() {
+        this.permeable = false;
+        this.physical = true;
+        this.visible = false;
     }
 
     @Override
     public int checkCollision(double X, double Y) {
-        return -1;
+        return 1;
     }
     
-    @Override
+      @Override
     public String toString() {
-        return "NULL OBJECT";
+        return "SKY";
     }
 
     @Override
     public BufferedImage getTextureColumn(int n) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
+    
+    
 }

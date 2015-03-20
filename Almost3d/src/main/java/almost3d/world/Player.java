@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 
-package almost3d.almost3d;
+package almost3d.world;
 
 /**
  *
@@ -30,6 +30,12 @@ public class Player {
 
     public double getxLoc() {
         return xLoc;
+    }
+    
+    public void setLocation(double x, double y, double theta) {
+        this.theta=theta;
+        this.xLoc=x;
+        this.yLoc=y;
     }
     
     

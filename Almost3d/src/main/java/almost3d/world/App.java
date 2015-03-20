@@ -1,18 +1,27 @@
-package almost3d.almost3d;
+package almost3d.world;
 
+import almost3d.graphics.Ray;
+import almost3d.graphics.Raycaster;
+import almost3d.graphics.Renderer;
+import java.io.IOException;
 import java.util.Scanner;
+import javax.imageio.ImageIO;
 
 /**
  * Hello world!
  *
  */
-public class App 
+public class App
 {
     public static void main( String[] args )
     {
         Map map = new Map();
         map.load();
         Raycaster rayCaster = new Raycaster(map);
+        Player player = new Player();
+        Renderer renderer = new Renderer(rayCaster,player,800,600,Math.PI/2);
+        renderer.initialize();
+        
         Scanner sc = new Scanner(System.in);
         while(true) {
             System.out.println("X:");
@@ -22,11 +31,9 @@ public class App
             System.out.println("Theta:");
             double theta = sc.nextDouble();
             
-            Ray ray = rayCaster.cast(x,y,theta);
-            
-            for (int i=0;i<ray.numberOfHits();i++) {
-                System.out.println(ray.objectHit(i).toString() + ray.distanceToHit(i));
-            }
+            player.setLocation(x, y, theta);
+            renderer.repaint();
         }
     }
 }
+
