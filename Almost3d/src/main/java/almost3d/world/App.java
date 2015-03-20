@@ -1,11 +1,8 @@
 package almost3d.world;
 
-import almost3d.graphics.Ray;
 import almost3d.graphics.Raycaster;
 import almost3d.graphics.Renderer;
-import java.io.IOException;
 import java.util.Scanner;
-import javax.imageio.ImageIO;
 
 /**
  * Hello world!

@@ -44,12 +44,12 @@
             <version>1.1.4</version>
             <configuration>
                 <targetClasses>
-                    <param>almost3d.almost3d.*</param>
-                    <param>almost3d.grafiikka.*</param>
+                    <param>almost3d.world.*</param>
+                    <param>almost3d.graphics.*</param>
                 </targetClasses>
                 <targetTests>
-                    <param>almost3d.almost3d.*</param>
-                    <param>almost3d.grafiikka.*</param>
+                    <param>almost3d.world.*</param>
+                    <param>almost3d.graphics.*</param>
                 </targetTests>
             </configuration>
         </plugin>

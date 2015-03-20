@@ -6,11 +6,7 @@
 
 package almost3d.world;
 
-import java.awt.Rectangle;
 import java.awt.image.BufferedImage;
-import java.awt.image.ColorModel;
-import java.awt.image.Raster;
-import java.awt.image.WritableRaster;
 import java.io.IOException;
 import javax.imageio.ImageIO;
 
@@ -23,7 +19,7 @@ public class Wall extends WorldObject {
     public Wall() {
         this.texture = new BufferedImage(100,500,6);
         this.permeable = false;
-        this.physical = true;;
+        this.physical = true;
         this.visible = true;
         ClassLoader cl = this.getClass().getClassLoader();
         try {
@@ -36,7 +32,7 @@ public class Wall extends WorldObject {
     }
     
     @Override
-    public BufferedImage getTextureColumn(int n) {              // this solution may not be optimal, but we need a copy of texture for shading/scaling
+    public BufferedImage getTextureColumn(int n) {              
         return this.texture.getSubimage(n,0,1,500);
     } 
 

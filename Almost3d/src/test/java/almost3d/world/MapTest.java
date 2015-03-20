@@ -6,7 +6,6 @@
 
 package almost3d.world;
 
-import almost3d.world.Map;
 import java.util.Random;
 import org.junit.Test;
 import static org.junit.Assert.*;
@@ -19,6 +18,21 @@ public class MapTest {
     
     public MapTest() {
     }
+    
+    @Test
+    public void testGetObject() {
+        Map map = new Map();
+        int m[][] = new int[][]{{0,0,0,0,0},{0,1,0,1,0},{0,0,0,0,0},{0,1,0,1,0},{0,0,0,0,0}};
+        map.load(m);
+        
+        Random r = new Random();
+        int x = r.nextInt(5);
+        int y = r.nextInt(5);
+        
+        WorldObject obj = map.checkObject(x, y);
+       
+        assertTrue((obj.toString().equals("WALL")&&m[x][y]==1)||(obj.toString().equals("NULL OBJECT")&&m[x][y]==0));
+         }
     
     @Test
     public void testCollisions() {

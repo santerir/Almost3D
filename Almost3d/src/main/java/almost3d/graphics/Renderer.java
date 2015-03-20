@@ -25,12 +25,12 @@ import javax.swing.JFrame;
  * @author santeriraisanen
  */
 public class Renderer extends JFrame {
-    private double fov;
-    private int dimx;
-    private int dimy;
-    private Raycaster raycaster;
-    private Player player;
-    private double angleIncrement;
+    private final double fov;
+    private final int dimx;
+    private final int dimy;
+    private final Raycaster raycaster;
+    private final Player player;
+    private final double angleIncrement;
     private BufferedImage sky_texture;
     
     
