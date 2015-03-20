@@ -31,6 +31,8 @@ public abstract class WorldObject {
         return this.visible;
     }
     
+    public abstract BufferedImage getTextureColumn(int n);
+    
     
     public abstract int checkCollision(double X, double Y);
 }

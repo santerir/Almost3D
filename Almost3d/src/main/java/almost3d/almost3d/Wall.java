@@ -6,7 +6,9 @@
 
 package almost3d.almost3d;
 
+import java.awt.Rectangle;
 import java.awt.image.BufferedImage;
+import java.awt.image.Raster;
 
 /**
  *
@@ -26,6 +28,10 @@ public class Wall extends WorldObject {
         this.texture = texture;
         this.permeable = false;
     }
+    
+    public BufferedImage getTextureColumn(int n) {
+        return this.texture.getSubimage(n,0,1,500);
+    } 
 
     @Override
     public int checkCollision(double X, double Y) {

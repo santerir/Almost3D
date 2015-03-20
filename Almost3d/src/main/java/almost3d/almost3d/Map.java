@@ -65,14 +65,5 @@ public class Map {
         }
         return false;
     }
-
-    public int getDimX() {
-        return this.dim_x;
-    }
-
-    public int getDimY() {
-        return this.dim_y;
-    }
-    
     
 }

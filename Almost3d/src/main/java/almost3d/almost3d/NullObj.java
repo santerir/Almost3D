@@ -6,6 +6,8 @@
 
 package almost3d.almost3d;
 
+import java.awt.image.BufferedImage;
+
 /**
  *
  * @author santeriraisanen
@@ -26,5 +28,10 @@ public class NullObj extends WorldObject{
     @Override
     public String toString() {
         return "NULL OBJECT";
+    }
+
+    @Override
+    public BufferedImage getTextureColumn(int n) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 }
