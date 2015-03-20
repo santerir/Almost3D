@@ -59,7 +59,7 @@ public class Map {
     
     public boolean checkCollisions(double x, double y, double radius) {
         for(Direction d:Direction.values()) {
-            if (checkObject((int) ceil(d.getX()*radius+x),(int) ceil(d.getY()*radius+x)).checkCollision(x, y)!=-1) {
+            if (checkObject((int) floor(d.getX()*radius+x),(int) floor(d.getY()*radius+x)).checkCollision(x, y)!=-1) {
                 return true;
             }
         }
