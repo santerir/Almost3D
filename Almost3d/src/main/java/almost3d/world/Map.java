@@ -43,9 +43,19 @@ public class Map {
     
     public void load() {                        // as is this
         this.SkyBox = new SkyBox();
-        this.dim_x=5;
-        this.dim_y=5;
-        this.map = new int[][]{{1,1,1,1,1},{1,0,0,0,1},{1,0,0,0,1},{1,0,0,0,1},{1,1,1,1,1}};
+        this.dim_x=11;
+        this.dim_y=11;
+        this.map = new int[][]{{0,0,0,0,0,0,0,0,0,0,0},
+                               {0,0,0,0,0,1,1,1,1,0,0},
+                               {0,0,0,0,0,1,0,0,1,0,0},
+                               {0,0,0,0,0,0,0,0,1,0,0},
+                               {0,0,0,1,0,1,1,0,1,0,0},
+                               {0,1,1,1,0,0,1,0,1,0,0},
+                               {0,1,0,0,0,0,1,0,1,0,0},
+                               {0,1,0,1,1,1,1,0,1,0,0},
+                               {0,1,0,0,0,0,0,0,1,0,0},
+                               {0,1,1,1,0,1,1,1,1,0,0},
+                               {0,0,0,0,0,0,0,0,0,0,0}};
         this.objects.add(new NullObj());
         this.objects.add(new Wall());
         
@@ -64,7 +74,9 @@ public class Map {
     
     public boolean checkCollisions(double x, double y, double radius) {
         for(Direction d:Direction.values()) {
-            if (checkObject((int) floor(d.getX()*radius+x),(int) floor(d.getY()*radius+x)).checkCollision(x, y)!=-1) {
+            double dx = d.getX()*radius+x;
+            double dy = d.getY()*radius+y;
+            if (checkObject((int) floor(dx),(int) floor(dy)).checkCollision(dx, dy)!=-1) {
                 return true;
             }
         }

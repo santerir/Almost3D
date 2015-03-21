@@ -13,7 +13,6 @@ import almost3d.world.Player;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.RenderingHints;
-import java.awt.event.KeyListener;
 import java.awt.geom.AffineTransform;
 import java.awt.image.BufferedImage;
 import java.awt.image.ColorModel;
@@ -75,29 +74,30 @@ public class Renderer extends JFrame {
     }
     
     private void render3D(Graphics2D g) {
-        double theta = this.player.getTheta()-this.fov/2;
+        double theta = this.player.getTheta();
+        double dTheta = -this.fov/2;
         double xLoc = this.player.getxLoc();
         double yLoc = this.player.getyLoc();
         
         for (int i = 0; i < this.dimx; i++) {
-            Ray ray = this.raycaster.cast(xLoc, yLoc, theta);
+            Ray ray = this.raycaster.cast(xLoc, yLoc, theta+dTheta);
             for(int j=ray.numberOfHits()-1; j >= 0; j--) {
                 if(ray.objectHit(j).isVisible()) {
-                    BufferedImage textureColumn = scaleColumn(ray.objectHit(j).getTextureColumn(ray.locationOfHit(j)),ray.distanceToHit(j));
-                    g.drawImage(textureColumn, i, 50, null);
+                    BufferedImage textureColumn = scaleColumn(ray.objectHit(j).getTextureColumn(ray.locationOfHit(j)),ray.distanceToHit(j),dTheta);
+                    g.drawImage(textureColumn, i, 0, null);
                 }
             }
-            theta = theta+this.angleIncrement;
+            dTheta = dTheta+this.angleIncrement;
         }
         
     }
         
-   public BufferedImage scaleColumn(BufferedImage im, double dist) {
+   public BufferedImage scaleColumn(BufferedImage im, double dist,double theta) {
         BufferedImage img_s = new BufferedImage(im.getWidth(),im.getHeight(),6);
         Graphics2D g = img_s.createGraphics();
         g.setRenderingHint(RenderingHints.KEY_INTERPOLATION,RenderingHints.VALUE_INTERPOLATION_BILINEAR);
         AffineTransform at = new AffineTransform();
-        at.setTransform(1, 0, 0, 1/dist, 0, (250-500/(2*dist)));
+        at.setTransform(1, 0, 0, 1/(dist*Math.cos(theta)), 0, (300-600/(2*dist*Math.cos(theta))));
         g.drawImage(im, at, this);
         return img_s;
        

@@ -17,7 +17,6 @@ import javax.imageio.ImageIO;
 public class Wall extends WorldObject {
     
     public Wall() {
-        this.texture = new BufferedImage(100,500,6);
         this.permeable = false;
         this.physical = true;
         this.visible = true;
@@ -33,7 +32,7 @@ public class Wall extends WorldObject {
     
     @Override
     public BufferedImage getTextureColumn(int n) {              
-        return this.texture.getSubimage(n,0,1,500);
+        return this.texture.getSubimage(n,0,1,600);
     } 
 
     @Override

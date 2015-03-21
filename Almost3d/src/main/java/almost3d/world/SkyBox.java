@@ -22,7 +22,7 @@ public class SkyBox extends WorldObject{
 
     @Override
     public int checkCollision(double X, double Y) {
-        return -1;
+        return 1;
     }
     
       @Override

@@ -52,14 +52,12 @@ public class Game {
     @SuppressWarnings("empty-statement")
     private void gameLoop() throws InterruptedException {
         long lastLoopTime = System.nanoTime();
-        final int TARGET_FPS = 24;
+        final int TARGET_FPS = 200;
         final long OPTIMAL_TIME = 1000000000 / TARGET_FPS;
 
-        // keep looping round til the game ends
+       
         while (running) {
-            // work out how long its been since the last update, this
-            // will be used to calculate how far the entities should
-            // move this loop
+
             long now = System.nanoTime();
             long updateLength = now - lastLoopTime;
             lastLoopTime = now;
@@ -69,8 +67,10 @@ public class Game {
             this.renderer.repaint();
 
             try {
+                if((lastLoopTime - System.nanoTime() + OPTIMAL_TIME)>0.00000001) {
                 Thread.sleep((lastLoopTime - System.nanoTime() + OPTIMAL_TIME) / 1000000);
-            } catch (InterruptedException e) {};
+                }
+            } catch(InterruptedException e) {}
         }
     }
 }
