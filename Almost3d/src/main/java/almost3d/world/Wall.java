@@ -41,7 +41,10 @@ public class Wall extends WorldObject {
         if (X%1==0) {
             return (int) (Y%1*100);
         }
-        return (int) (X%1*100);
+        if (Y%1==0) {
+            return (int) (X%1*100);
+        }
+        else return 1;
     }
     
     @Override

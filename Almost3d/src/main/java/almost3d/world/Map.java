@@ -5,6 +5,7 @@
  */
 
 package almost3d.world;
+import almost3d.game.Game;
 import static java.lang.Math.*;
 import java.util.ArrayList;
 /**
@@ -19,7 +20,11 @@ public class Map {
     private ArrayList<WorldObject> objects;
     private SkyBox SkyBox;
     
-    public Map() {
+    public Map(Game game) {
+        this.objects = new ArrayList<>();
+    }
+    
+     public Map() {                                         // for debugging purposes
         this.objects = new ArrayList<>();
     }
     

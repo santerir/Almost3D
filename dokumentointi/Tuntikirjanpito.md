@@ -18,3 +18,7 @@
 ##Perjantai 20 maaliskuuta 2015
 ###klo 16:00-23:50
 	Renderöinti laitettu kuntoon, lisää jUnit testejä, keylistener aloitettu
+
+##Lauantai 21 maalikuuta 2015
+###klo 13:00-16:50
+	Ohjaus toimii, ja gameLoop pyörii

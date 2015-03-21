@@ -5,6 +5,7 @@
  */
 
 package almost3d.graphics;
+import almost3d.game.Game;
 import almost3d.world.Map;
 import almost3d.world.WorldObject;
 import static java.lang.Math.*;
@@ -13,16 +14,20 @@ import static java.lang.Math.*;
  * @author santeriraisanen
  */
 public class Raycaster {
-    private Map map;
+    private final Map map;
     
-    public Raycaster(Map m) {
-        this.map = m;
+    public Raycaster(Game game) {
+        this.map = game.map;
+    }
+    
+    public Raycaster(Map map) {
+        this.map = map;
     }
     
     public Ray cast(double x, double y, double theta) {
         Ray ray = new Ray();
-        double x_comp = Math.cos(-theta);                       // -1*theta because our coordinates are mirrored over the x-axis
-        double y_comp = Math.sin(-theta);
+        double x_comp = Math.cos(theta);                       // -1*theta because our coordinates are mirrored over the x-axis
+        double y_comp = Math.sin(theta);
         double step[] = new double[]{x,y};
         
         

@@ -8,10 +8,12 @@ package almost3d.graphics;
 
 
 
+import almost3d.game.Game;
 import almost3d.world.Player;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.RenderingHints;
+import java.awt.event.KeyListener;
 import java.awt.geom.AffineTransform;
 import java.awt.image.BufferedImage;
 import java.awt.image.ColorModel;
@@ -32,14 +34,16 @@ public class Renderer extends JFrame {
     private final Player player;
     private final double angleIncrement;
     private BufferedImage sky_texture;
+    private Game game;
     
     
-    public Renderer(Raycaster raycaster, Player player, int dimx, int dimy, double fov) {
-        this.raycaster = raycaster;
-        this.player = player;
-        this.fov = fov;
-        this.dimx = dimx;
-        this.dimy = dimy;
+    public Renderer(Game game) {
+        this.game = game;
+        this.raycaster = game.raycaster;
+        this.player = game.player;
+        this.fov = Math.PI/3;
+        this.dimx = 800;
+        this.dimy = 600;
         this.angleIncrement = this.fov/this.dimx;
         ClassLoader cl = this.getClass().getClassLoader();
         try {
@@ -51,6 +55,8 @@ public class Renderer extends JFrame {
     }
     
     public void initialize() {
+
+        this.addKeyListener(this.game.controls);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setSize(this.dimx,this.dimy);
         this.setResizable(false);
@@ -74,7 +80,7 @@ public class Renderer extends JFrame {
         double yLoc = this.player.getyLoc();
         
         for (int i = 0; i < this.dimx; i++) {
-            Ray ray = this.raycaster.cast(xLoc, xLoc, theta);
+            Ray ray = this.raycaster.cast(xLoc, yLoc, theta);
             for(int j=ray.numberOfHits()-1; j >= 0; j--) {
                 if(ray.objectHit(j).isVisible()) {
                     BufferedImage textureColumn = scaleColumn(ray.objectHit(j).getTextureColumn(ray.locationOfHit(j)),ray.distanceToHit(j));
