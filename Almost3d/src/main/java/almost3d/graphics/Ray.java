@@ -7,6 +7,7 @@
 package almost3d.graphics;
 
 import almost3d.world.WorldObject;
+import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 
 /**
@@ -16,19 +17,19 @@ import java.util.ArrayList;
 public class Ray {
     private ArrayList<WorldObject> objects;
     private ArrayList<Double> distance;
-    private ArrayList<Integer> hitLoc;
+    private ArrayList<BufferedImage> textureColumn;
     
     public Ray() {
         this.objects = new ArrayList<>();
         this.distance = new ArrayList<>();
-        this.hitLoc = new ArrayList<>();
+        this.textureColumn = new ArrayList<>();
                 
     }
     
-    public void addHit(WorldObject obj, double dits, int hitLoc) {
+    public void addHit(WorldObject obj, double dits, BufferedImage texture) {
         this.objects.add(obj);
         this.distance.add(dits);
-        this.hitLoc.add(hitLoc);
+        this.textureColumn.add(texture);
     }
     
     public int numberOfHits() {
@@ -39,8 +40,8 @@ public class Ray {
         return(this.distance.get(n).doubleValue());
     }
     
-    public int locationOfHit(int n) {
-        return(this.hitLoc.get(n).intValue());
+    public BufferedImage textureColumn(int n) {
+        return(this.textureColumn.get(n));
     }
      
     public WorldObject objectHit(int n) {

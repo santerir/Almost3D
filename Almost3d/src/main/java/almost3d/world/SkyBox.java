@@ -21,8 +21,8 @@ public class SkyBox extends WorldObject{
     }
 
     @Override
-    public int checkCollision(double X, double Y) {
-        return 1;
+    public boolean checkCollision(double X, double Y) {
+        return true;
     }
     
       @Override
@@ -31,7 +31,7 @@ public class SkyBox extends WorldObject{
     }
 
     @Override
-    public BufferedImage getTextureColumn(int n) {
+    public BufferedImage getTextureColumn(double X, double Y, double theta) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     

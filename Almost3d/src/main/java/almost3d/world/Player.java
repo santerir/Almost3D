@@ -50,10 +50,10 @@ public class Player {
         this.xLoc = x;
         this.yLoc = y;
     }
-//!this.game.map.checkCollisions(this.xLoc + deltaX, this.yLoc + deltaY, 0.05)
+
     public void update(double delta) {
         int[] controls = game.controls.getControls();
-        double deltaX = delta / 1000000000 * Math.cos(this.theta) * this.linSpeed * controls[0];            //why does this not work
+        double deltaX = delta / 1000000000 * Math.cos(this.theta) * this.linSpeed * controls[0];          
         double deltaY = delta / 1000000000 * Math.sin(this.theta) * this.linSpeed * controls[0];
         double deltaTheta = delta / 1000000000 * this.rotSpeed * controls[1];
        

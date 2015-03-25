@@ -33,7 +33,7 @@ public class Renderer extends JFrame {
     private final Player player;
     private final double angleIncrement;
     private BufferedImage sky_texture;
-    private Game game;
+    private final Game game;
     
     
     public Renderer(Game game) {
@@ -83,7 +83,7 @@ public class Renderer extends JFrame {
             Ray ray = this.raycaster.cast(xLoc, yLoc, theta+dTheta);
             for(int j=ray.numberOfHits()-1; j >= 0; j--) {
                 if(ray.objectHit(j).isVisible()) {
-                    BufferedImage textureColumn = scaleColumn(ray.objectHit(j).getTextureColumn(ray.locationOfHit(j)),ray.distanceToHit(j),dTheta);
+                    BufferedImage textureColumn = scaleColumn(ray.textureColumn(j),ray.distanceToHit(j),dTheta);
                     g.drawImage(textureColumn, i, 0, null);
                 }
             }
@@ -92,7 +92,7 @@ public class Renderer extends JFrame {
         
     }
         
-   public BufferedImage scaleColumn(BufferedImage im, double dist,double theta) {
+   private BufferedImage scaleColumn(BufferedImage im, double dist,double theta) {
         BufferedImage img_s = new BufferedImage(im.getWidth(),im.getHeight(),6);
         Graphics2D g = img_s.createGraphics();
         g.setRenderingHint(RenderingHints.KEY_INTERPOLATION,RenderingHints.VALUE_INTERPOLATION_BILINEAR);

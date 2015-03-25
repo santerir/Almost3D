@@ -25,6 +25,7 @@ public class Game {
     public Player player;
 
     public boolean running;
+    public boolean paused;
 
     public Game() {
         this.map = new Map(this);
@@ -39,9 +40,14 @@ public class Game {
         this.map.load();
         this.renderer.initialize();
     }
-    
+
+    public void pause() {
+        this.paused = !this.paused;
+    }
+
     public void start() {
         this.running = true;
+        this.paused = false;
         try {
             this.gameLoop();
         } catch (InterruptedException ex) {
@@ -52,26 +58,20 @@ public class Game {
     @SuppressWarnings("empty-statement")
     private void gameLoop() throws InterruptedException {
         long lastLoopTime = System.nanoTime();
-        final int TARGET_FPS = 200;
+        final int TARGET_FPS = 25;
         final long OPTIMAL_TIME = 1000000000 / TARGET_FPS;
 
-       
         while (running) {
+                long now = System.nanoTime();
+                long deltaTime = now - lastLoopTime;
+                lastLoopTime = now;
 
-            long now = System.nanoTime();
-            long updateLength = now - lastLoopTime;
-            lastLoopTime = now;
-            double delta = updateLength;
-            
-            this.player.update(delta);
-            this.renderer.repaint();
+                this.player.update(deltaTime);
+                this.renderer.repaint();
 
-            try {
-                if((lastLoopTime - System.nanoTime() + OPTIMAL_TIME)>0.00000001) {
-                Thread.sleep((lastLoopTime - System.nanoTime() + OPTIMAL_TIME) / 1000000);
-                }
-            } catch(InterruptedException e) {}
+                try {
+                        Thread.sleep((lastLoopTime - System.nanoTime() + OPTIMAL_TIME) / 1000000);
+                } catch (InterruptedException e) {}
         }
     }
 }
-

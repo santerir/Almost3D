@@ -19,6 +19,7 @@ public class Controls implements KeyListener {
     private boolean left;
     private boolean right;
     int[] controls;
+    private Game game;
     
     public Controls(Game game) {
         this.up = false;
@@ -26,6 +27,7 @@ public class Controls implements KeyListener {
         this.left = false;
         this.right = false;
         this.controls = new int[2];
+        this.game = game;
     }
 
     @Override
@@ -59,6 +61,7 @@ public class Controls implements KeyListener {
 
     @Override
     public void keyPressed(KeyEvent e) {
+        
         switch (e.getKeyChar()) {
             case 'w':   this.up = true;
                         break;
@@ -67,6 +70,8 @@ public class Controls implements KeyListener {
             case 'a':   this.left = true;
                         break;
             case 'd':   this.right = true;
+                        break;
+            case 'p':   this.game.pause();
                         break;
         }
     }

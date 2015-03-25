@@ -31,8 +31,10 @@ public abstract class WorldObject {
         return this.visible;
     }
     
-    public abstract BufferedImage getTextureColumn(int n);
     
+    // Returns the pixel column of the texture, which is hit by the ray from X,Y with angle theta
+    public abstract BufferedImage getTextureColumn(double X, double Y, double theta);
     
-    public abstract int checkCollision(double X, double Y);
+    //  Checks if point (X,Y) is within objects collider
+    public abstract boolean checkCollision(double X, double Y);
 }

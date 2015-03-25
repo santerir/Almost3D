@@ -39,6 +39,14 @@ public class Map {
         this.map = map;
         this.objects.add(new NullObj());
         this.objects.add(new Wall());
+        for (int i = 0; i<map.length;i++) {
+            for (int j = 0; i<map[0].length; j++) {
+                if (map[i][j]>1) {
+                    this.objects.add(new Sprite(i+0.5,j+0.5));
+                    map[i][j] = this.objects.size()-1;
+                }
+            }
+        }
     }
     
     public void load() {                        // as is this
@@ -47,10 +55,10 @@ public class Map {
         this.dim_y=11;
         this.map = new int[][]{{0,0,0,0,0,0,0,0,0,0,0},
                                {0,0,0,0,0,1,1,1,1,0,0},
-                               {0,0,0,0,0,1,0,0,1,0,0},
+                               {0,0,0,0,0,1,0,2,1,0,0},
                                {0,0,0,0,0,0,0,0,1,0,0},
                                {0,0,0,1,0,1,1,0,1,0,0},
-                               {0,1,1,1,0,0,1,0,1,0,0},
+                               {0,1,1,1,0,2,1,0,1,0,0},
                                {0,1,0,0,0,0,1,0,1,0,0},
                                {0,1,0,1,1,1,1,0,1,0,0},
                                {0,1,0,0,0,0,0,0,1,0,0},
@@ -58,6 +66,14 @@ public class Map {
                                {0,0,0,0,0,0,0,0,0,0,0}};
         this.objects.add(new NullObj());
         this.objects.add(new Wall());
+          for (int i = 0; i<dim_x;i++) {
+            for (int j = 0; j<dim_y; j++) {
+                if (map[i][j]>1) {
+                    this.objects.add(new Sprite(i+0.5,j+0.5));
+                    map[i][j] = this.objects.size()-1;
+                }
+            }
+        }
         
         
     
@@ -76,7 +92,7 @@ public class Map {
         for(Direction d:Direction.values()) {
             double dx = d.getX()*radius+x;
             double dy = d.getY()*radius+y;
-            if (checkObject((int) floor(dx),(int) floor(dy)).checkCollision(dx, dy)!=-1) {
+            if (checkObject((int) floor(dx),(int) floor(dy)).checkCollision(dx, dy)) {
                 return true;
             }
         }

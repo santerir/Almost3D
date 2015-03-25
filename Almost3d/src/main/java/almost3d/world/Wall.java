@@ -31,19 +31,21 @@ public class Wall extends WorldObject {
     }
     
     @Override
-    public BufferedImage getTextureColumn(int n) {              
+   public BufferedImage getTextureColumn(double X, double Y, double theta) { 
+        int n;
+        if (X%1==0) {
+            n =  (int) (Y%1*100);
+        }
+        else if (Y%1==0) {
+            n =  (int) (X%1*100);
+        }
+        else {n=1;}
         return this.texture.getSubimage(n,0,1,600);
     } 
 
     @Override
-    public int checkCollision(double X, double Y) {
-        if (X%1==0) {
-            return (int) (Y%1*100);
-        }
-        if (Y%1==0) {
-            return (int) (X%1*100);
-        }
-        else return 1;
+    public boolean checkCollision(double X, double Y) {
+            return true;
     }
     
     @Override

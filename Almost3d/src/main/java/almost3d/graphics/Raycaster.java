@@ -43,7 +43,12 @@ public class Raycaster {
             if(!hit.isPhysical()) {
                 continue;
             }
-            ray.addHit(hit, Math.sqrt((step[0]-x)*(step[0]-x)+(step[1]-y)*(step[1]-y)), hit.checkCollision(step[0], step[1]));
+            if (!hit.isVisible()) {
+                ray.addHit(hit, Math.sqrt((step[0]-x)*(step[0]-x)+(step[1]-y)*(step[1]-y)), null);
+            }
+            else {
+            ray.addHit(hit, Math.sqrt((step[0]-x)*(step[0]-x)+(step[1]-y)*(step[1]-y)), hit.getTextureColumn(x, y, theta));
+            }
             if(!hit.isPermeable()){
                 cont = false;
             }
