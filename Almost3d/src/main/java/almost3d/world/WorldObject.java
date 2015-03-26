@@ -32,6 +32,8 @@ public abstract class WorldObject {
     }
     
     
+    public abstract double checkDistance(double X, double Y, double theta);
+    
     // Returns the pixel column of the texture, which is hit by the ray from X,Y with angle theta
     public abstract BufferedImage getTextureColumn(double X, double Y, double theta);
     

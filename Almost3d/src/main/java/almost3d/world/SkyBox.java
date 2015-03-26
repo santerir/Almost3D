@@ -34,6 +34,11 @@ public class SkyBox extends WorldObject{
     public BufferedImage getTextureColumn(double X, double Y, double theta) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
+
+    @Override
+    public double checkDistance(double X, double Y, double theta) {
+        return 0;
+    }
     
     
 }

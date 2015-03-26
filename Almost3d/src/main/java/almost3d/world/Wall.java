@@ -52,6 +52,11 @@ public class Wall extends WorldObject {
     public String toString() {
         return "WALL";
     }
+
+    @Override
+    public double checkDistance(double X, double Y, double theta) {
+        return 0;
+    }
     
     
 }

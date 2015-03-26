@@ -47,12 +47,17 @@ public class Sprite extends WorldObject{
 
     @Override
     public boolean checkCollision(double X, double Y) {
-        return false;
+        return true;
     }
     
     @Override
     public String toString() {
         return "SPRITE";
+    }
+
+    @Override
+    public double checkDistance(double X, double Y, double theta) {
+        return Math.sqrt(Math.pow(this.xLocation-X,2)+Math.pow(this.yLocation-Y, 2));
     }
     
 }

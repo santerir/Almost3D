@@ -47,7 +47,11 @@ public class Raycaster {
                 ray.addHit(hit, Math.sqrt((step[0]-x)*(step[0]-x)+(step[1]-y)*(step[1]-y)), null);
             }
             else {
-            ray.addHit(hit, Math.sqrt((step[0]-x)*(step[0]-x)+(step[1]-y)*(step[1]-y)), hit.getTextureColumn(x, y, theta));
+            double distance = 0;
+            if (hit.toString().equals("WALL")) {
+                distance = Math.sqrt((step[0]-x)*(step[0]-x)+(step[1]-y)*(step[1]-y));
+            }
+            ray.addHit(hit, distance + hit.checkDistance(x, y, theta), hit.getTextureColumn(x, y, theta));
             }
             if(!hit.isPermeable()){
                 cont = false;
