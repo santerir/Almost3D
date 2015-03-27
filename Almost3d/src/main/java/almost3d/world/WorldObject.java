@@ -31,6 +31,8 @@ public abstract class WorldObject {
         return this.visible;
     }
     
+    public abstract double[] getLocation();
+    
     
     public abstract double checkDistance(double X, double Y, double theta);
     
@@ -39,4 +41,6 @@ public abstract class WorldObject {
     
     //  Checks if point (X,Y) is within objects collider
     public abstract boolean checkCollision(double X, double Y);
+    
+    public abstract int update(double deltaTime);
 }

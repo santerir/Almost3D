@@ -6,8 +6,10 @@
 
 package almost3d.world;
 
+import almost3d.game.Game;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
+import java.util.Random;
 import javax.imageio.ImageIO;
 
 /**
@@ -15,10 +17,18 @@ import javax.imageio.ImageIO;
  * @author santeriraisanen
  */
 public class Sprite extends WorldObject{
-    private final double xLocation;
-    private final double yLocation;
+    private double xLocation;
+    private double yLocation;
+    private double theta;
+    private Random random;
+    private final Game game;
+    private int updateCycle;
     
-    public Sprite(double X, double Y) {
+    public Sprite(double X, double Y,Game g) {
+        this.updateCycle = 0;
+        this.random = new Random();
+        this.theta = 0;
+        this.game = g;
         this.permeable = true;
         this.physical = true;
         this.visible = true;
@@ -47,7 +57,7 @@ public class Sprite extends WorldObject{
 
     @Override
     public boolean checkCollision(double X, double Y) {
-        return true;
+        return false;
     }
     
     @Override
@@ -60,4 +70,37 @@ public class Sprite extends WorldObject{
         return Math.sqrt(Math.pow(this.xLocation-X,2)+Math.pow(this.yLocation-Y, 2));
     }
     
+    @Override
+    public double[] getLocation() {
+        return new double[]{this.xLocation,this.yLocation,0.4};
+    }
+    
+
+    @Override
+    public int update(double deltaTime) {
+        this.updateCycle = (this.updateCycle+1)%20;
+        if(this.updateCycle==0) {
+            this.theta = (this.theta + this.random.nextGaussian()*1.2)%(Math.PI*2);
+        }
+        
+        double deltaX = deltaTime / 1000000000 * Math.cos(this.theta)*0.7;     
+        double deltaY = deltaTime / 1000000000 * Math.sin(this.theta)*0.7;
+       
+        if (!this.game.map.checkCollisions(this.xLocation + deltaX, this.yLocation + deltaY, 0.4)) {
+            this.xLocation = this.xLocation + deltaX;
+            this.yLocation = this.yLocation + deltaY;
+            return 1;
+        } 
+        if (!this.game.map.checkCollisions(this.xLocation, this.yLocation + deltaY, 0.4)) {
+            this.yLocation += deltaY;
+            return 1;
+        }
+        if (!this.game.map.checkCollisions(this.xLocation + deltaX, this.yLocation, 0.4)) {
+            this.xLocation += deltaX;
+            return 1; 
+        }
+        return 0;
+    }
 }
+    
+

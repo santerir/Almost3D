@@ -39,4 +39,14 @@ public class NullObj extends WorldObject{
     public double checkDistance(double X, double Y, double theta) {
         return 0;
     }
+
+    @Override
+    public int update(double deltaTime) {
+        return 0;
+    }
+
+    @Override
+    public double[] getLocation() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 }

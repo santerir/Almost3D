@@ -32,12 +32,22 @@ public class SkyBox extends WorldObject{
 
     @Override
     public BufferedImage getTextureColumn(double X, double Y, double theta) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        throw new UnsupportedOperationException("No texture assigned");
     }
 
     @Override
     public double checkDistance(double X, double Y, double theta) {
         return 0;
+    }
+
+    @Override
+    public int update(double deltaTime) {
+        return 0;
+    }
+
+    @Override
+    public double[] getLocation() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     
     

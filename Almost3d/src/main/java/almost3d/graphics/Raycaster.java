@@ -26,7 +26,7 @@ public class Raycaster {
     
     public Ray cast(double x, double y, double theta) {
         Ray ray = new Ray();
-        double x_comp = Math.cos(theta);                       // -1*theta because our coordinates are mirrored over the x-axis
+        double x_comp = Math.cos(theta);
         double y_comp = Math.sin(theta);
         double step[] = new double[]{x,y};
         

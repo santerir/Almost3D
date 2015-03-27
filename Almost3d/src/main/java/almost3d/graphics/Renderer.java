@@ -1,4 +1,4 @@
-package almost3d.graphics;
+
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -7,7 +7,7 @@ package almost3d.graphics;
  */
 
 
-
+package almost3d.graphics;
 import almost3d.game.Game;
 import almost3d.world.Player;
 import java.awt.Graphics;

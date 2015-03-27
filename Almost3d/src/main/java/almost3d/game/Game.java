@@ -58,19 +58,29 @@ public class Game {
     @SuppressWarnings("empty-statement")
     private void gameLoop() throws InterruptedException {
         long lastLoopTime = System.nanoTime();
-        final int TARGET_FPS = 25;
+        final int TARGET_FPS = 60;
         final long OPTIMAL_TIME = 1000000000 / TARGET_FPS;
-
+        long averageDeltaTime=0;
+        int frames=0;
+        
         while (running) {
+                frames = (frames+1)%30;
+                if (frames==29) {
+                    System.out.println("FPS: " + 29*(1000000000/(float)averageDeltaTime));
+                    averageDeltaTime=0;
+                }
+                
                 long now = System.nanoTime();
                 long deltaTime = now - lastLoopTime;
                 lastLoopTime = now;
-
+                averageDeltaTime += deltaTime;
+                
+                this.map.update(deltaTime);
                 this.player.update(deltaTime);
                 this.renderer.repaint();
-
+                
                 try {
-                        Thread.sleep((lastLoopTime - System.nanoTime() + OPTIMAL_TIME) / 1000000);
+                        Thread.sleep(Math.max(0,(lastLoopTime - System.nanoTime() + OPTIMAL_TIME) / 1000000));
                 } catch (InterruptedException e) {}
         }
     }
