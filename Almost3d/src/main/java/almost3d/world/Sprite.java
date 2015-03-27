@@ -78,9 +78,9 @@ public class Sprite extends WorldObject{
 
     @Override
     public int update(double deltaTime) {
-        this.updateCycle = (this.updateCycle+1)%20;
+        this.updateCycle = (this.updateCycle+1)%100;
         if(this.updateCycle==0) {
-            this.theta = (this.theta + this.random.nextGaussian()*1.2)%(Math.PI*2);
+            this.theta = (this.theta + this.random.nextGaussian())%(Math.PI*2);
         }
         
         double deltaX = deltaTime / 1000000000 * Math.cos(this.theta)*0.7;     

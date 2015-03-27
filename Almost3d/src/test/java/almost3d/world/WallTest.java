@@ -23,7 +23,7 @@ public class WallTest {
     @Test
     public void textureSizeTest() {
          Wall w = new Wall();
-         BufferedImage tex = w.getTextureColumn(1);
+         BufferedImage tex = w.getTextureColumn(0,0,1);
          
          assertTrue(tex.getWidth() == 1);
     }

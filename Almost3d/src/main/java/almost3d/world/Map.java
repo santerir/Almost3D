@@ -43,7 +43,7 @@ public class Map {
         this.objects.add(new NullObj());
         this.objects.add(new Wall());
         for (int i = 0; i < map.length; i++) {
-            for (int j = 0; i < map[0].length; j++) {
+            for (int j = 0; j < map[0].length; j++) {
                 if (map[i][j] > 1) {
                     this.objects.add(new Sprite(i + 0.5, j + 0.5, this.game));
                     map[i][j] = this.objects.size() - 1;
