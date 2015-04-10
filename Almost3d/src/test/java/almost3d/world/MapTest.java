@@ -20,7 +20,7 @@ public class MapTest {
     }
     
     @Test
-    public void testGetObject() {
+    public void testCheckObject() {
         Map map = new Map();
         int m[][] = new int[][]{{0,0,0,0,0},{0,1,0,1,0},{0,0,0,0,0},{0,1,0,1,0},{0,0,0,0,0}};
         map.load(m);
@@ -32,7 +32,25 @@ public class MapTest {
         WorldObject obj = map.checkObject(x, y);
        
         assertTrue((obj.toString().equals("WALL")&&m[x][y]==1)||(obj.toString().equals("NULL OBJECT")&&m[x][y]==0));
-         }
+    }
+    
+    @Test
+    public void testLoad() {
+        Map map = new Map();
+        map.load();
+        assertTrue(map.checkObject(11, 11).getId()==-1);
+    }
+    
+    @Test
+    public void updateMapTest() {
+         Map map = new Map();
+         map.load(new int[][]{{0,0,0,0,0},{0,0,0,0,0},{0,0,0,0,0},{0,0,0,0,0},{0,0,0,0,2}});
+         WorldObject sprite = map.getObject(2);
+         sprite.setLocation(1, 1);
+         map.updateMap(sprite);
+         assertTrue(map.checkObject(0, 0).getId()==2&&map.checkObject(4, 4).getId()==0);
+    }
+    
     
     @Test
     public void testCollisions() {

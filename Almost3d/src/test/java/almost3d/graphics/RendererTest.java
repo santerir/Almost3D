@@ -15,9 +15,11 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package almost3d.world;
+package almost3d.graphics;
 
 import almost3d.game.Game;
+import almost3d.world.Wall;
+import java.awt.image.BufferedImage;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
@@ -25,25 +27,31 @@ import static org.junit.Assert.*;
  *
  * @author santeriraisanen
  */
-public class SpriteTest {
-    
-    public SpriteTest() {
+public class RendererTest {
+    public RendererTest(){
+
     }
     
     @Test
-    public void ConstructorTest(){
+    public void scaleColumnTest() {
+        Wall w = new Wall();
         Game g = new Game();
-        Sprite s = new Sprite(0,0,g,0);
-        
-        assertTrue(s.toString().equals("SPRITE"));
+        BufferedImage bi = g.renderer.scaleColumn(w.getTextureColumn(1, 1, 1), 1, 0);
+        assertTrue(bi.getWidth()==1);
     }
     
     @Test
-    public void updateTest(){
+    public void initializeWidthTest() {
+        Game g = new Game();
+        g.renderer.initialize();
+        assertTrue(g.renderer.getWidth()==800);
+    }
+    
+    @Test
+    public void initializeListenerTest() {
         Game g = new Game();
         g.initialize();
-        WorldObject sprite = g.map.getObject(2);
-        sprite.update(1200);
-        assertTrue(sprite.getLocation()[0]!=sprite.getPrevLocation()[0]||sprite.getLocation()[1]!=sprite.getPrevLocation()[1]);
+        assertTrue(g.renderer.getKeyListeners().length==1);
     }
+    
 }

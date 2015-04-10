@@ -10,6 +10,14 @@ import static java.lang.Math.*;
 import java.util.ArrayList;
 
 /**
+ * The map class keeps track of the locations of all game objects.
+ * <p>
+ * This class can load a map from file, or use a default map in absence of one.
+ * It keeps track of the locations of moving objects (sprites) and walls. It can
+ * also call for each object to update it's state and check weather objects
+ * collide with each other.
+ * 
+ * 
  *
  * @author santeriraisanen
  */
@@ -45,7 +53,7 @@ public class Map {
         for (int i = 0; i < map.length; i++) {
             for (int j = 0; j < map[0].length; j++) {
                 if (map[i][j] > 1) {
-                    this.objects.add(new Sprite(i + 0.5, j + 0.5, this.game));
+                    this.objects.add(new Sprite(i + 0.5, j + 0.5, this.game,this.objects.size()));
                     map[i][j] = this.objects.size() - 1;
                 }
             }
@@ -72,33 +80,38 @@ public class Map {
         for (int i = 0; i < dim_x; i++) {
             for (int j = 0; j < dim_y; j++) {
                 if (map[i][j] > 1) {
-                    this.objects.add(new Sprite(i + 0.5, j + 0.5, this.game));
+                    this.objects.add(new Sprite(i + 0.5, j + 0.5, this.game,this.objects.size()));
                     map[i][j] = this.objects.size() - 1;
                 }
             }
         }
 
     }
+    
+    public WorldObject getObject(int objId) {
+        return this.objects.get(objId);
+    }
 
-    public void updateMap(double X, double Y, double Radius, int objIndex) {
-
+    public void updateMap(WorldObject obj) {        //move object's map marker
+        double[] prevLoc = obj.getPrevLocation();
+        double[] loc = obj.getLocation();
+                
         int dx;
         int dy;
-        for (Direction d : Direction.values()) {
-            if (this.map[(int) (d.getX() + X)][(int) (d.getY() + Y)] == objIndex) {
-                this.map[(int) (d.getX() + X)][(int) (d.getY() + Y)] = 0;
-            }
-            dx = (int) (d.getX() * Radius + X);
-            dy = (int) (d.getY() * Radius + Y);
-            this.map[dx][dy] = objIndex;
+        for (Direction d : Direction.values()) {         
+            dx = (int) (d.getX() * prevLoc[2] + prevLoc[0]);
+            dy = (int) (d.getY() * prevLoc[2] + prevLoc[1]);
+            this.map[dx][dy] = 0;
+            dx = (int) (d.getX() * loc[2] + loc[0]);
+            dy = (int) (d.getY() * loc[2] + loc[1]);
+            this.map[dx][dy] = obj.getId();
         }
     }
 
     public void update(double deltaTime) {
         for (WorldObject o : this.objects) {
             if (o.update(deltaTime) == 1) {
-                double[] Loc = o.getLocation();
-                this.updateMap(Loc[0], Loc[1], Loc[2], this.objects.indexOf(o));
+                this.updateMap(o);
             }
         }
     }

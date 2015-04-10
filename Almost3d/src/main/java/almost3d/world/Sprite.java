@@ -13,18 +13,27 @@ import java.util.Random;
 import javax.imageio.ImageIO;
 
 /**
+ * This sprite is a simple, visible, movable world object.
+ * <p>
+ * This object moves in a random direction on update. It can collide with world
+ * objects, but passes through the player untouched. In the style of old school
+ * first person shooters, it doesn't have a bearing, but rather it always faces
+ * the player. Thus it is only a two dimensional model.
+ * 
  *
  * @author santeriraisanen
  */
 public class Sprite extends WorldObject{
     private double xLocation;
     private double yLocation;
+    private double xPrevLocation;
+    private double yPrevLocation;
     private double theta;
     private Random random;
     private final Game game;
     private int updateCycle;
     
-    public Sprite(double X, double Y,Game g) {
+    public Sprite(double X, double Y,Game g,int id) {
         this.updateCycle = 0;
         this.random = new Random();
         this.theta = 0;
@@ -32,6 +41,7 @@ public class Sprite extends WorldObject{
         this.permeable = true;
         this.physical = true;
         this.visible = true;
+        this.objectId=id;
         ClassLoader cl = this.getClass().getClassLoader();
         try {
         this.texture = ImageIO.read(cl.getResource("sprite.png"));
@@ -75,9 +85,24 @@ public class Sprite extends WorldObject{
         return new double[]{this.xLocation,this.yLocation,0.4};
     }
     
+    @Override
+    public double[] getPrevLocation() {
+        return new double[]{this.xPrevLocation,this.yPrevLocation,0.4};
+    }
+    
+    @Override
+    public void setLocation(double X,double Y) {
+        this.xPrevLocation = this.xLocation;
+        this.yPrevLocation = this.yLocation;
+        this.xLocation=X;
+        this.yLocation=Y;
+    }
+    
 
     @Override
     public int update(double deltaTime) {
+        this.xPrevLocation = this.xLocation;
+        this.yPrevLocation = this.yLocation;
         this.updateCycle = (this.updateCycle+1)%100;
         if(this.updateCycle==0) {
             this.theta = (this.theta + this.random.nextGaussian())%(Math.PI*2);

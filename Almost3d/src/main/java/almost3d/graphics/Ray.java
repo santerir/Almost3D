@@ -11,13 +11,16 @@ import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 
 /**
- *
+ * An instance of this class holds refrences to all the world objects which intersect a ray cast from
+ * location (x,y) on the map in the direction theta. The class also records the distance to the object from the ray's origin, as well as the column of
+ * pixels on the object's texture which is hit by the ray.
+ * 
  * @author santeriraisanen
  */
 public class Ray {
-    private ArrayList<WorldObject> objects;
-    private ArrayList<Double> distance;
-    private ArrayList<BufferedImage> textureColumn;
+    private final ArrayList<WorldObject> objects;
+    private final ArrayList<Double> distance;
+    private final ArrayList<BufferedImage> textureColumn;
     
     public Ray() {
         this.objects = new ArrayList<>();

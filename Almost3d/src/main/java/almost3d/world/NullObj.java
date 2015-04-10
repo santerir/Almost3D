@@ -9,6 +9,8 @@ package almost3d.world;
 import java.awt.image.BufferedImage;
 
 /**
+ * This is a null world object, which does absolutely nothing.
+ * 
  *
  * @author santeriraisanen
  */
@@ -18,11 +20,16 @@ public class NullObj extends WorldObject{
         this.permeable=true;
         this.physical=false;
         this.visible=false;
+        this.objectId=0;
     }
 
     @Override
     public boolean checkCollision(double X, double Y) {
         return false;
+    }
+    
+    @Override
+    public void setLocation(double X,double Y) {
     }
     
     @Override
@@ -47,6 +54,11 @@ public class NullObj extends WorldObject{
 
     @Override
     public double[] getLocation() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public double[] getPrevLocation() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 }

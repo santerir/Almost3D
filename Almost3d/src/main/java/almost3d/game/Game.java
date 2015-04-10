@@ -1,8 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package almost3d.game;
 
 import almost3d.graphics.Raycaster;
@@ -13,7 +9,15 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 /**
- *
+ * This class handles timing of render and update events.
+ * <p>
+ * The constructor and initialize method handle creation of all needed game components.
+ * After that, the game loop is started, which updates game objects and renders frames
+ * into the game window in precisely timed intervals. The game loops attempts to keep
+ * the framerate at a constant 60 FPS by varying the time between frames in relation to
+ * processing time.
+ * 
+ * 
  * @author santeriraisanen
  */
 public class Game {

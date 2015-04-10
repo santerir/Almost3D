@@ -7,11 +7,13 @@
 package almost3d.world;
 
 /**
+ * This enum lists direction in the game world.
+ * 
  *
  * @author santeriraisanen
  */
 public enum Direction {
-    N(0,1), S(0,-1), E(1,0), W(-1,0), NW(-1,1), NE(1,1), SW(-1,-1), SE(1,-1);
+    N(0,1), S(0,-1), E(1,0), W(-1,0), NW(-1,1), NE(1,1), SW(-1,-1), SE(1,-1), O(0,0);
     
     private final double x;
     private final double y;

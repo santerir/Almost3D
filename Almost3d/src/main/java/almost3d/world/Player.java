@@ -8,6 +8,9 @@ package almost3d.world;
 import almost3d.game.Game;
 
 /**
+ * The player is not a WorldObject per se, but it keeps track of the cameras
+ * location and bearing, as well as translates and rotates it according to control
+ * events.
  *
  * @author santeriraisanen
  */

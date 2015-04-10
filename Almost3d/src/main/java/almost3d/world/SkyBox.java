@@ -9,6 +9,8 @@ package almost3d.world;
 import java.awt.image.BufferedImage;
 
 /**
+ * The SkyBox is a world object which delimits the edges of the map.
+ * 
  *
  * @author santeriraisanen
  */
@@ -18,11 +20,16 @@ public class SkyBox extends WorldObject{
         this.permeable = false;
         this.physical = true;
         this.visible = false;
+        this.objectId=-1;
     }
 
     @Override
     public boolean checkCollision(double X, double Y) {
         return true;
+    }
+    
+    @Override
+    public void setLocation(double X,double Y) {
     }
     
       @Override
@@ -47,6 +54,11 @@ public class SkyBox extends WorldObject{
 
     @Override
     public double[] getLocation() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public double[] getPrevLocation() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     

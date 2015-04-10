@@ -11,6 +11,13 @@ import java.io.IOException;
 import javax.imageio.ImageIO;
 
 /**
+ * The wall object represents a wall.
+ * <p>
+ * This objects does not have a location, but rather the map objects keeps track
+ * of wall locations, and passes reference to a single instance of this when
+ * necessary to indicate that wall exists. This means that all walls in the game
+ * are identical save for their locations.
+ * 
  *
  * @author santeriraisanen
  */
@@ -20,6 +27,7 @@ public class Wall extends WorldObject {
         this.permeable = false;
         this.physical = true;
         this.visible = true;
+        this.objectId=1;
         ClassLoader cl = this.getClass().getClassLoader();
         try {
         this.texture = ImageIO.read(cl.getResource("wall.png"));
@@ -57,6 +65,10 @@ public class Wall extends WorldObject {
     public double checkDistance(double X, double Y, double theta) {
         return 0;
     }
+    
+    @Override
+    public void setLocation(double X,double Y) {
+    }
 
     @Override
     public int update(double deltaTime) {
@@ -65,6 +77,11 @@ public class Wall extends WorldObject {
 
     @Override
     public double[] getLocation() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public double[] getPrevLocation() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     

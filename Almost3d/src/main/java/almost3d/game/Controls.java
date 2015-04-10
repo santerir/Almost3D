@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 
 package almost3d.game;
 
@@ -10,6 +5,12 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
 /**
+ * Listens to the game window for key presses and updates player controls.
+ * <p>
+ * On key press and release events, the class sets the relevant control flag to
+ * true or false respectively. The current state of the controls can then be
+ * retrieved with the getControls method.
+ * 
  *
  * @author santeriraisanen
  */
@@ -19,8 +20,12 @@ public class Controls implements KeyListener {
     private boolean left;
     private boolean right;
     int[] controls;
-    private Game game;
-    
+    private final Game game;
+
+    /**
+     *
+     * @param game
+     */
     public Controls(Game game) {
         this.up = false;
         this.down = false;
@@ -35,6 +40,10 @@ public class Controls implements KeyListener {
         
     }
     
+    /**
+     *
+     * @return
+     */
     public int[] getControls() {
         controls[0] = 0;
         controls[1] = 0;
@@ -53,8 +62,11 @@ public class Controls implements KeyListener {
         return controls;
         
 
-    }    
-    
+    }
+
+    /**
+     *
+     */
     public void clear() {
         this.up = this.down = this.left = this.right = false;
     }

@@ -1,8 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package almost3d.graphics;
 
 import almost3d.game.Game;
@@ -11,6 +7,12 @@ import almost3d.world.WorldObject;
 import static java.lang.Math.*;
 
 /**
+ * This class creates Ray -objects.
+ * <p>
+ * The class goes through all points in the map array which the ray passes through,
+ * checking whether the point contains a game object. If no object is located at the point,
+ * it adds the NullObject to the ray. If the ray hits a non-permeable WorldObject 
+ * (ie a wall or the skybox), it will stop checking any further.
  *
  * @author santeriraisanen
  */

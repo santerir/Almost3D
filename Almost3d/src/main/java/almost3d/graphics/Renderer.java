@@ -22,7 +22,17 @@ import javax.imageio.ImageIO;
 import javax.swing.JFrame;
 
 /**
- *
+ *This class handles drawing of the 3d world.
+ * <p>
+ * The class creates a swing JFrame, on to which it draws frames when the Game
+ * object calls for a new one. The renderer casts a Ray from the player location
+ * for each column of pixels in the JFrame. It then overlays the retrieved texture
+ * columns, scaling them on the y-axis in respect to their distance to the player.
+ * Right now the resolution is set to 600x800 but there is no reason it couldn't be more.
+ * Later this will also implement distance based shading.
+ * 
+ * 
+ * 
  * @author santeriraisanen
  */
 public class Renderer extends JFrame {
@@ -92,7 +102,7 @@ public class Renderer extends JFrame {
         
     }
         
-   private BufferedImage scaleColumn(BufferedImage im, double dist,double theta) {
+   public BufferedImage scaleColumn(BufferedImage im, double dist,double theta) {
         BufferedImage img_s = new BufferedImage(im.getWidth(),im.getHeight(),6);
         Graphics2D g = img_s.createGraphics();
         g.setRenderingHint(RenderingHints.KEY_INTERPOLATION,RenderingHints.VALUE_INTERPOLATION_BILINEAR);
