@@ -1,4 +1,3 @@
-
 package almost3d.game;
 
 import almost3d.graphics.Raycaster;
@@ -11,13 +10,13 @@ import java.util.logging.Logger;
 /**
  * This class handles timing of render and update events.
  * <p>
- * The constructor and initialize method handle creation of all needed game components.
- * After that, the game loop is started, which updates game objects and renders frames
- * into the game window in precisely timed intervals. The game loops attempts to keep
- * the framerate at a constant 60 FPS by varying the time between frames in relation to
- * processing time.
- * 
- * 
+ * The constructor and initialize method handle creation of all needed game
+ * components. After that, the game loop is started, which updates game objects
+ * and renders frames into the game window in precisely timed intervals. The
+ * game loops attempts to keep the framerate at a constant 60 FPS by varying the
+ * time between frames in relation to processing time.
+ *
+ *
  * @author santeriraisanen
  */
 public class Game {
@@ -27,9 +26,11 @@ public class Game {
     public Controls controls;
     public Renderer renderer;
     public Player player;
+    public StartGUI startgui;
 
     public boolean running;
     public boolean paused;
+
 
     public Game() {
         this.map = new Map(this);
@@ -64,28 +65,31 @@ public class Game {
         long lastLoopTime = System.nanoTime();
         final int TARGET_FPS = 60;
         final long OPTIMAL_TIME = 1000000000 / TARGET_FPS;
-        long averageDeltaTime=0;
-        int frames=0;
-        
+        long averageDeltaTime = 0;
+        int frames = 0;
+
         while (running) {
-                frames = (frames+1)%30;
-                if (frames==29) {
-                    System.out.println("FPS: " + 29*(1000000000/(float)averageDeltaTime));
-                    averageDeltaTime=0;
-                }
-                
-                long now = System.nanoTime();
-                long deltaTime = now - lastLoopTime;
-                lastLoopTime = now;
-                averageDeltaTime += deltaTime;
-                
-                this.map.update(deltaTime);
-                this.player.update(deltaTime);
-                this.renderer.repaint();
-                
-                try {
-                        Thread.sleep(Math.max(0,(lastLoopTime - System.nanoTime() + OPTIMAL_TIME) / 1000000));
-                } catch (InterruptedException e) {}
+            frames = (frames + 1) % 30;
+            if (frames == 29) {
+                System.out.println("FPS: " + 29 * (1000000000 / (float) averageDeltaTime));
+                averageDeltaTime = 0;
+            }
+
+            long now = System.nanoTime();
+            long deltaTime = now - lastLoopTime;
+            lastLoopTime = now;
+            averageDeltaTime += deltaTime;
+
+            this.map.update(deltaTime);
+            this.player.update(deltaTime);
+            this.renderer.repaint();
+
+            try {
+                Thread.sleep(Math.max(0, (lastLoopTime - System.nanoTime() + OPTIMAL_TIME) / 1000000));
+            } catch (InterruptedException e) {
+            }
         }
     }
+
+    
 }
