@@ -22,3 +22,8 @@
 ##Lauantai 21 maalikuuta 2015
 ###klo 13:00-16:50
 	Ohjaus toimii, ja gameLoop pyörii
+
+
+Perjantai 17 huhtikuuta 2015
+###klo 16:00-20:00
+	Uusia testeja, splash screen, sekv.kaavioita 

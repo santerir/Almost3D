@@ -6,6 +6,7 @@
 
 package almost3d.world;
 
+import almost3d.game.Game;
 import java.util.Random;
 import org.junit.Test;
 import static org.junit.Assert.*;
@@ -17,6 +18,21 @@ import static org.junit.Assert.*;
 public class PlayerTest {
     
     public PlayerTest() {
+    }
+    
+    @Test
+    public void updateTest() {
+        Game g = new Game();
+        g.initialize();
+        int delta = 10000;
+        
+        g.controls.debugControls();
+        double X = g.player.getxLoc() + delta / 1000000000 * Math.cos(0.5) * 1.2;
+        double Y = g.player.getxLoc() + delta / 1000000000 * Math.sin(0.5) * 1.2;
+        
+        g.player.update(delta);
+        assertTrue(X == g.player.getxLoc() && Y == g.player.getyLoc());
+        
     }
     
     @Test

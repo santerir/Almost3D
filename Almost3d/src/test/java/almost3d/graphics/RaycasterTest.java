@@ -7,8 +7,6 @@
 package almost3d.graphics;
 
 
-import almost3d.graphics.Raycaster;
-import almost3d.graphics.Ray;
 import almost3d.world.Map;
 import java.util.Random;
 import org.junit.Test;

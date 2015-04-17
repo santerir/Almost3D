@@ -25,8 +25,9 @@ public class Player {
 
     public Player(Game game) {
         this.game = game;
-        this.linSpeed = 1;
+        this.linSpeed = 1.3;
         this.rotSpeed = Math.PI / 2.5;
+        this.theta=0.5;
         this.xLoc = 2;
         this.yLoc = 2;
     }

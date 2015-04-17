@@ -26,6 +26,7 @@ public class Controls implements KeyListener {
      *
      * @param game
      */
+    
     public Controls(Game game) {
         this.up = false;
         this.down = false;
@@ -33,6 +34,14 @@ public class Controls implements KeyListener {
         this.right = false;
         this.controls = new int[2];
         this.game = game;
+    }
+    
+    /**
+     * Only for debugging purposes
+     */
+    public void debugControls() {  
+        this.up = true;
+        this.down=true;
     }
 
     @Override
@@ -42,7 +51,7 @@ public class Controls implements KeyListener {
     
     /**
      *
-     * @return
+     * @return {x,y}, x is -1 (down) or 1 (up), y is -1 (left) or 1 (right)
      */
     public int[] getControls() {
         controls[0] = 0;
