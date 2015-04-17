@@ -62,7 +62,7 @@ public class StartGUI extends JDialog{
         this.add(panel);
         this.setTitle("Super Cool Awsome Game");
         this.setSize(300, 200);
-        this.setDefaultCloseOperation(HIDE_ON_CLOSE);
+        this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
     }
     
     public int openGUI() {

@@ -24,7 +24,6 @@ public class App
             g.initialize();
             g.start();
         }
-        
     }
 }
 
