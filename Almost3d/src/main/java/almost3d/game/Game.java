@@ -29,7 +29,7 @@ public class Game {
     public StartGUI startgui;
 
     public boolean running;
-    public boolean paused;
+    public boolean initialized;
 
 
     public Game() {
@@ -39,26 +39,45 @@ public class Game {
         this.player = new Player(this);
         this.renderer = new Renderer(this);
         this.running = false;
+        this.initialized = false;
     }
         
     /**
      * Initializes map and game window
      */
     public void initialize(int mapId) {
+        if (this.initialized) {
+            return;
+        }
         this.map.load(mapId);
         this.renderer.initialize();
+        this.initialized = true;
+    }
+    
+    /**
+     * Initialize game with custom map.
+     * 
+     * @param map map in integer-matrix form
+     */
+    public void initialize(int[][] map) {
+        if (this.initialized) {
+            return;
+        }
+        this.map.load(map);
+        this.renderer.initialize();
+        this.initialized = true;
     }
 
-    public void pause() {
-        this.paused = !this.paused;
-    }
+
 
     /**
      * Starts the game loop, which will run until the program is closed
      */
     public void start() {
+        if (!this.initialized) {
+            return;
+        }
         this.running = true;
-        this.paused = false;
         try {
             this.gameLoop();
         } catch (InterruptedException ex) {

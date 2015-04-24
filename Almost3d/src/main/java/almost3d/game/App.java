@@ -25,8 +25,11 @@ public class App
             g.start();
         }
         if (actionValue == 4) {
-            MapBuilder mb = new MapBuilder(g);
+            MapBuilder mb = new MapBuilder(g,new JFrame());
             int retValue = mb.runMapBuilder();
+            System.out.println("hello");
+            g.start();
+            System.out.println("hello");
         }
     }
 }

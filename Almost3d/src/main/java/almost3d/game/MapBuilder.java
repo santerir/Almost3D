@@ -24,6 +24,7 @@ import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.JButton;
+import javax.swing.JDialog;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -33,7 +34,9 @@ import javax.swing.WindowConstants;
  *
  * @author santeriraisanen
  */
-public class MapBuilder extends JFrame implements ActionListener {
+public class MapBuilder extends JDialog implements ActionListener {
+
+    private final Game game;
 
     JLabel topLabel = new JLabel("MapBuilder");
 
@@ -47,43 +50,83 @@ public class MapBuilder extends JFrame implements ActionListener {
     JPanel p3;
     int[][] map = new int[MAP_WIDTH][MAP_HEIGHT];
 
-    public MapBuilder(Game g) {
-        p1 = new JPanel();
-        p1.add(topLabel, BorderLayout.CENTER);
+    public MapBuilder(Game g, JFrame parent) {
+        super(parent,"Map Builder",true);
+        this.game = g;
+        this.p1 = new JPanel();
+        this.p1.add(topLabel, BorderLayout.CENTER);
 
-        p2 = new JPanel();
-        p2.setLayout(new GridLayout(MAP_WIDTH, MAP_HEIGHT));
-        
+        this.p2 = new JPanel();
+        this.p2.setLayout(new GridLayout(MAP_WIDTH, MAP_HEIGHT));
+
+        this.p3 = new JPanel();
 
         for (int x = 0; x < MAP_HEIGHT; x++) {
             for (int y = 0; y < MAP_WIDTH; y++) {
-                buttons[x][y] = new JButton("");
-                buttons[x][y].addActionListener(this);
-                buttons[x][y].setBackground(Color.GRAY);
-                p2.add(buttons[x][y]);
+                this.map[x][y] = 0;
+                this.buttons[x][y] = new JButton("");
+                this.buttons[x][y].addActionListener(this);
+                this.buttons[x][y].setBackground(Color.GRAY);
+                this.buttons[x][y].setOpaque(true);
+                this.buttons[x][y].setBorderPainted(false);
+                this.p2.add(buttons[x][y]);
             }
         }
-        this.runButton=new JButton("Let's Play");
+        this.runButton = new JButton("Let's Play");
+        this.runButton.addActionListener(this);
+        p3.add(this.runButton);
+
         Dimension dimension = Toolkit.getDefaultToolkit().getScreenSize();
         int x = (int) ((dimension.getWidth() - 450) / 2);
         int y = (int) ((dimension.getHeight() - 500) / 2);
 
         this.setLocation(x, y);
-        this.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+        this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
         this.add(p1, BorderLayout.NORTH);
         this.add(p2, BorderLayout.CENTER);
+        this.add(p3, BorderLayout.SOUTH);
+
         this.setSize(450, 500);
     }
-    
-    
+
     public int runMapBuilder() {
         this.setVisible(true);
-        return 1;
-        
+        return 0;
     }
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        if (e.getSource() == this.runButton) {
+            boolean breaker = false;
+            for (int x = 0; x < MAP_HEIGHT; x++) {
+                for (int y = 0; y < MAP_WIDTH; y++) {
+                    if (map[x][y] == 0) {
+                        map[x][y] = -1;
+                        breaker = true;
+                        break;
+                    }
+                }
+                if (breaker) {
+                    break;
+                }
+            }
+            this.game.initialize(this.map);
+            this.dispose();
+        }
+
+        for (int x = 0; x < MAP_HEIGHT; x++) {
+            for (int y = 0; y < MAP_WIDTH; y++) {
+                if (e.getSource() == buttons[x][y]) {
+                    if (this.map[x][y] == 0) {
+                        buttons[x][y].setBackground(Color.RED);
+                        this.map[x][y] = 1;
+                    } else {
+                        buttons[x][y].setBackground(Color.GRAY);
+                        this.map[x][y] = 0;
+                    }
+                    return;
+                }
+            }
+        }
     }
 }
