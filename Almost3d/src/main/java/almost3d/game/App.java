@@ -1,9 +1,9 @@
+
 package almost3d.game;
 
-import almost3d.game.Game;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import javax.swing.JFrame;
+
+
 
 
 
@@ -20,9 +20,13 @@ public class App
         Game g = new Game();
         StartGUI startGui = new StartGUI(new JFrame());
         int actionValue = startGui.openGUI();
-        if (actionValue == 1) {
-            g.initialize();
+        if (actionValue > 0 && actionValue < 4) {
+            g.initialize(actionValue);
             g.start();
+        }
+        if (actionValue == 4) {
+            MapBuilder mb = new MapBuilder(g);
+            int retValue = mb.runMapBuilder();
         }
     }
 }

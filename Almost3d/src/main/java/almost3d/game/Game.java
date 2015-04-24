@@ -40,9 +40,12 @@ public class Game {
         this.renderer = new Renderer(this);
         this.running = false;
     }
-
-    public void initialize() {
-        this.map.load();
+        
+    /**
+     * Initializes map and game window
+     */
+    public void initialize(int mapId) {
+        this.map.load(mapId);
         this.renderer.initialize();
     }
 
@@ -50,6 +53,9 @@ public class Game {
         this.paused = !this.paused;
     }
 
+    /**
+     * Starts the game loop, which will run until the program is closed
+     */
     public void start() {
         this.running = true;
         this.paused = false;
@@ -60,7 +66,7 @@ public class Game {
         }
     }
 
-    @SuppressWarnings("empty-statement")
+    
     private void gameLoop() throws InterruptedException {
         long lastLoopTime = System.nanoTime();
         final int TARGET_FPS = 60;

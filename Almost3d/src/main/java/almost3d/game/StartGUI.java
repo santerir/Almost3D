@@ -32,15 +32,17 @@ import javax.swing.JPanel;
     
 public class StartGUI extends JDialog{
     class startListener implements ActionListener {
+    int value;
     Game g;
     StartGUI parent;
-    public startListener(StartGUI parent){
+    public startListener(StartGUI parent, int value){
         super();
         this.parent = parent;
+        this.value = value;
     }
     @Override
     public void actionPerformed(ActionEvent e) {
-        parent.setReturnValue(1);
+        parent.setReturnValue(value);
         parent.dispose();
     }
 }
@@ -53,12 +55,20 @@ public class StartGUI extends JDialog{
         super(parent,"Super Cool Awsome Game",true);
         this.value = 0;
         panel = new JPanel();
-        startListener = new startListener(this);
         
-        startButton = new JButton("OK");
-        startButton.addActionListener(startListener);
+        JButton startButton1 = new JButton("Maze");
+        JButton startButton2 = new JButton("Grid");
+        JButton startButton3 = new JButton("Box");
+        JButton startButton4 = new JButton("Custom");
+        startButton1.addActionListener(new startListener(this,1));
+        startButton2.addActionListener(new startListener(this,2));
+        startButton3.addActionListener(new startListener(this,3));
+        startButton4.addActionListener(new startListener(this,4));
 
-        panel.add(startButton);
+        panel.add(startButton1);
+        panel.add(startButton2);
+        panel.add(startButton3);
+        panel.add(startButton4);
         this.add(panel);
         this.setTitle("Super Cool Awsome Game");
         this.setSize(300, 200);

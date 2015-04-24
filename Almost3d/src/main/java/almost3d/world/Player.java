@@ -28,8 +28,8 @@ public class Player {
         this.linSpeed = 1.3;
         this.rotSpeed = Math.PI / 2.5;
         this.theta=0.5;
-        this.xLoc = 2;
-        this.yLoc = 2;
+        this.xLoc = 0.5;
+        this.yLoc = 0.5;
     }
 
     public Player() {    // for debugging purposes
@@ -61,14 +61,14 @@ public class Player {
         double deltaY = delta / 1000000000 * Math.sin(this.theta) * this.linSpeed * controls[0];
         double deltaTheta = delta / 1000000000 * this.rotSpeed * controls[1];
        
-        if (!this.game.map.checkCollisions(this.xLoc + deltaX, this.yLoc + deltaY, 0.05)) {
+        if (!this.game.map.checkCollisions(this.xLoc + deltaX, this.yLoc + deltaY, 0.1)) {
             this.xLoc = this.xLoc + deltaX;
             this.yLoc = this.yLoc + deltaY;
         } 
-        else if (!this.game.map.checkCollisions(this.xLoc, this.yLoc + deltaY, 0.05)) {
+        else if (!this.game.map.checkCollisions(this.xLoc, this.yLoc + deltaY, 0.1)) {
             this.yLoc += deltaY;
         }
-        else if (!this.game.map.checkCollisions(this.xLoc + deltaX, this.yLoc, 0.05)) {
+        else if (!this.game.map.checkCollisions(this.xLoc + deltaX, this.yLoc, 0.1)) {
             this.xLoc += deltaX;
         }
         
