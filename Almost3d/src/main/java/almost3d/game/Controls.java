@@ -92,8 +92,6 @@ public class Controls implements KeyListener {
                         break;
             case 'd':   this.right = true;
                         break;
-            case 'p':   this.game.pause();
-                        break;
         }
     }
 

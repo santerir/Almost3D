@@ -26,10 +26,8 @@ public class App
         }
         if (actionValue == 4) {
             MapBuilder mb = new MapBuilder(g,new JFrame());
-            int retValue = mb.runMapBuilder();
-            System.out.println("hello");
+            mb.runMapBuilder();
             g.start();
-            System.out.println("hello");
         }
     }
 }
